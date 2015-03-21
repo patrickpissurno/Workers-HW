@@ -224,7 +224,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(149, 242);
+            this.button1.Location = new System.Drawing.Point(148, 242);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 18;
@@ -244,7 +244,7 @@
             // 
             // saveFileDialog1
             // 
-            this.saveFileDialog1.Filter = "Text files|*.txt";
+            this.saveFileDialog1.Filter = "Text files|*.txt|HTML Files|*.html";
             this.saveFileDialog1.Title = "Exportar dados";
             // 
             // Form1
