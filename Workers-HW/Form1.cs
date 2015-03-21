@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Workers_HW
 {
@@ -133,6 +134,26 @@ namespace Workers_HW
                     }
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.ShowDialog();
+            if (!string.IsNullOrWhiteSpace(saveFileDialog1.FileName))
+            {
+                StreamWriter writer = new StreamWriter(saveFileDialog1.FileName);
+                foreach (Worker worker in workers)
+                {
+                    if (worker != null)
+                    {
+                        string line = "Nome: " + worker.nome + ". Idade: " + worker.idade + ". Sexo: " + worker.sexo + ". Tipo Sanguíneo: " + worker.tipoSanguineo + ". Profissão: " + worker.profissao + ". Salário: " + worker.salario + ". Estado civil: " + worker.estadoCivil + ". Número de filhos: " + worker.filhos;
+                        writer.WriteLine(line);
+                    }
+                }
+                writer.Close();
+            }
+            else
+                MessageBox.Show("Digite um nome de arquivo válido.");
         }
     }
 }
