@@ -10,6 +10,26 @@ namespace Workers_HW
 {
     public static class FileManager
     {
+        private static bool unsavedChanges = false;
+
+        #region Get & Set
+        public static bool UnsavedChanges
+        {
+            get
+            {
+                return unsavedChanges;
+            }
+            set
+            {
+                unsavedChanges = value;
+                if(value)
+                    Form1.reference.SetTitle(" *");
+                else
+                    Form1.reference.SetTitle("");
+            }
+        }
+        #endregion
+
         #region Save
         public static void Save()
         {
@@ -31,6 +51,7 @@ namespace Workers_HW
                     StreamWriter writer = new StreamWriter(path);
                     writer.Write(data);
                     writer.Close();
+                    UnsavedChanges = false;
                 }
             }
         }
@@ -67,6 +88,7 @@ namespace Workers_HW
                         }
                     }
                     Form1.reference.Workers = Form1.reference.Workers;
+                    UnsavedChanges = false;
                 }
                 catch
                 {

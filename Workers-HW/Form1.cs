@@ -47,6 +47,16 @@ namespace Workers_HW
             
         }
 
+        #region Set Title
+        public void SetTitle(string str)
+        {
+            if(str != null)
+            {
+                this.Text = "Cadastro de Funcionários" + str;
+            }
+        }
+        #endregion
+
         #region Add User
         private void salvar_Click(object sender, EventArgs e)
         {
@@ -81,6 +91,7 @@ namespace Workers_HW
                     if (!found)
                         Workers.Add(worker);
                     Workers = workers;
+                    FileManager.UnsavedChanges = true;
                 }
                 catch
                 {
@@ -128,6 +139,8 @@ namespace Workers_HW
                     {
                         workers.Remove(worker);
                         Workers = workers;
+
+                        FileManager.UnsavedChanges = true;
 
                         //Resets the form
                         sexo.SelectedIndex = 0;
@@ -229,7 +242,21 @@ namespace Workers_HW
         #region Open Button
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FileManager.Load();
+            if (!FileManager.UnsavedChanges)
+                FileManager.Load();
+            else
+            {
+                DialogResult result = MessageBox.Show("Alguns dados ainda não foram salvos. Salvar agora?", "Aviso", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        FileManager.Save();
+                        break;
+                    case DialogResult.No:
+                        FileManager.Load();
+                        break;
+                }
+            }
         }
         #endregion
 
@@ -237,6 +264,28 @@ namespace Workers_HW
         private void salvarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileManager.Save();
+        }
+        #endregion
+
+        #region Form Closing
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (FileManager.UnsavedChanges)
+            {
+                DialogResult result = MessageBox.Show("Alguns dados ainda não foram salvos. Salvar agora?", "Aviso", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        FileManager.Save();
+                        break;
+                    case DialogResult.No:
+                        FileManager.Load();
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                }
+            }
         }
         #endregion
     }
