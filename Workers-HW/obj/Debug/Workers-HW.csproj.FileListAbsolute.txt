@@ -16,3 +16,12 @@ C:\Users\patrick.pissurno\Desktop\Workers-HW-master\Workers-HW-master\Workers-HW
 C:\Users\patrick.pissurno\Desktop\Workers-HW-master\Workers-HW-master\Workers-HW\obj\Debug\Workers_HW.Form1.resources
 C:\Users\patrick.pissurno\Desktop\Workers-HW-master\Workers-HW-master\Workers-HW\obj\Debug\Workers_HW.Properties.Resources.resources
 C:\Users\patrick.pissurno\Desktop\Workers-HW-master\Workers-HW-master\Workers-HW\obj\Debug\Workers-HW.csproj.GenerateResource.Cache
+C:\Users\patrick.pissurno\Desktop\Workers-HW\Workers-HW\bin\Debug\Workers-HW.exe.config
+C:\Users\patrick.pissurno\Desktop\Workers-HW\Workers-HW\obj\Debug\Workers-HW.exe
+C:\Users\patrick.pissurno\Desktop\Workers-HW\Workers-HW\obj\Debug\Workers-HW.pdb
+C:\Users\patrick.pissurno\Desktop\Workers-HW\Workers-HW\bin\Debug\Workers-HW.exe
+C:\Users\patrick.pissurno\Desktop\Workers-HW\Workers-HW\bin\Debug\Workers-HW.pdb
+C:\Users\patrick.pissurno\Desktop\Workers-HW\Workers-HW\obj\Debug\Workers-HW.csprojResolveAssemblyReference.cache
+C:\Users\patrick.pissurno\Desktop\Workers-HW\Workers-HW\obj\Debug\Workers_HW.Form1.resources
+C:\Users\patrick.pissurno\Desktop\Workers-HW\Workers-HW\obj\Debug\Workers_HW.Properties.Resources.resources
+C:\Users\patrick.pissurno\Desktop\Workers-HW\Workers-HW\obj\Debug\Workers-HW.csproj.GenerateResource.Cache
