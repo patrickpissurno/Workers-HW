@@ -13,6 +13,7 @@ namespace Workers_HW
 {
     public partial class Form1 : Form
     {
+        public static Form1 reference;
         private List<Worker> workers = new List<Worker>();
         #region Get/Set
         public List<Worker> Workers
@@ -39,11 +40,14 @@ namespace Workers_HW
         public Form1()
         {
             InitializeComponent();
+            reference = this;
             sexo.SelectedIndex = 0;
             estadocivil.SelectedIndex = 0;
             sangue.SelectedIndex = 0;
+            
         }
 
+        #region Add User
         private void salvar_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(nome.Text) && !string.IsNullOrWhiteSpace(idade.Text) && !string.IsNullOrWhiteSpace(profissao.Text) &&
@@ -88,7 +92,9 @@ namespace Workers_HW
                 MessageBox.Show("Por favor preencha todos os campos de maneira correta.");
             }
         }
+        #endregion
 
+        #region Select User
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             foreach (Worker worker in workers)
@@ -109,7 +115,9 @@ namespace Workers_HW
                 }
             }
         }
+        #endregion
 
+        #region Remove User
         private void button1_Click(object sender, EventArgs e)
         {
             foreach (Worker worker in workers)
@@ -135,8 +143,10 @@ namespace Workers_HW
                 }
             }
         }
+        #endregion
 
-        private void button2_Click(object sender, EventArgs e)
+        #region Export Data
+        private void export_Click(object sender, EventArgs e)
         {
             saveFileDialog1.ShowDialog();
             if (!string.IsNullOrWhiteSpace(saveFileDialog1.FileName))
@@ -145,6 +155,7 @@ namespace Workers_HW
                 switch(saveFileDialog1.FilterIndex)
                 {
                     case 1: //TXT Export
+                        #region TXT
                         writer = new StreamWriter(saveFileDialog1.FileName);
                         foreach (Worker worker in workers)
                         {
@@ -155,8 +166,10 @@ namespace Workers_HW
                             }
                         }
                         writer.Close();
+                        #endregion
                         break;
                     case 2: //HTML Export
+                        #region HTML
                         writer = new StreamWriter(saveFileDialog1.FileName);
                         writer.Write("<!doctype html>\r<meta charset=utf-8>\r<head>\r<title>\rFuncionários\r</title>\r");
                         writer.Write("<style>\rtable\r{\rfont-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;\nwidth: 100%;\rborder-collapse: collapse;\r}\rtd, th\r{\rfont-size: 1em;\rborder: 1px solid #98bf21;\rpadding: 3px 7px 2px 7px;\r}\rth\r{\rfont-size: 1.1em;\rtext-align: left;\rpadding-top: 5px;\rpadding-bottom: 4px;\rbackground-color: #A7C942;\rcolor: #ffffff;\r}\rtr.alt td\r{\rcolor: #000000;\rbackground-color: #EAF2D3;\r}\r</style>\r");
@@ -187,6 +200,7 @@ namespace Workers_HW
                         }
                         writer.Write("</table>\r</center>\r</body>\r</html>");
                         writer.Close();
+                        #endregion
                         break;
                 }
                 MessageBox.Show("Exportado com sucesso!");
@@ -194,5 +208,36 @@ namespace Workers_HW
             else
                 MessageBox.Show("Digite um nome de arquivo válido.");
         }
+        #endregion
+
+        #region Show Save Dialog
+        public string ShowSaveDialog()
+        {
+            saveFileDialog2.ShowDialog();
+            return saveFileDialog2.FileName;
+        }
+        #endregion
+
+        #region Show Load Dialog
+        public string ShowLoadDialog()
+        {
+            openFileDialog1.ShowDialog();
+            return openFileDialog1.FileName;
+        }
+        #endregion
+
+        #region Open Button
+        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileManager.Load();
+        }
+        #endregion
+
+        #region Save Button
+        private void salvarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileManager.Save();
+        }
+        #endregion
     }
 }
